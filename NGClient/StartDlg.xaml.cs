@@ -40,6 +40,14 @@ namespace NGClient
                 {
                     throw new Exception("N < 3");
                 }
+                else if (cols > 10 || rows > 10) 
+                {
+                    throw new Exception("Der Wert für Spalten und Reihen darf nicht größer als 10 sein!");
+                }
+                else if(N > cols || N > rows) 
+                {
+                    throw new Exception("N darf nicht größer als die Anzahl der Spalten oder Reihen sein!");
+                }
                 else
                 {
                     DialogResult = true;

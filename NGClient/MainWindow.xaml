@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NGClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" WindowState="Maximized">
     <Canvas x:Name="c" SizeChanged="c_SizeChanged">
         <Menu Name="MainMenu" IsMainMenu="True" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="43" RenderTransformOrigin="0.116,0">
             <MenuItem Header="Spiel" Width="43" Focusable="False" Height="21">

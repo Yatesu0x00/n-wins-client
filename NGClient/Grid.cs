@@ -109,18 +109,6 @@ namespace NGClient
 
             Canvas.SetLeft(Rect, sx * Canvas.GetLeft(Rect));
             Canvas.SetTop(Rect, sy * Canvas.GetTop(Rect));
-
-            HorLine.X1 = sx;
-            HorLine.Y1 = sy;
-
-            HorLine.X2 = HorLine.X1;
-            HorLine.Y2 = HorLine.Y1;
-
-            HorLine.Width *= ((sx + sy) / 2);
-            HorLine.Height *= ((sx + sy) / 2);
-
-            Canvas.SetTop(HorLine, sy * Canvas.GetTop(HorLine));
-            Canvas.SetLeft(HorLine, sx * Canvas.GetLeft(HorLine));
         }
     }
 }
