@@ -15,7 +15,9 @@ namespace NGClient
         Ellipse circle = new Ellipse();
         double speed { get; set; }  // Fallgeschwindigkeit
         public bool canMoveH { get; set; }
-
+        
+        //public int Owner { get; set; }
+        
         public Chip(Grid grid, double speed, System.Drawing.Color? color = null)
         {
             canMoveH = true;
@@ -51,26 +53,25 @@ namespace NGClient
             Canvas.SetLeft(circle, Canvas.GetLeft(circle) + circle.Width * dir);
         }
 
-        public bool Drop(Grid grid, int target, double dt, int chipIndex)
+        public bool Drop(Grid grid, int target, double dt)
         {
             canMoveH = false;
 
             if (Canvas.GetTop(circle) + circle.Height <= Canvas.GetTop(grid.Rect) + grid.Rect.Height - (grid.Floor[target] * grid.ChipSize))
             {
                 Canvas.SetTop(circle, Canvas.GetTop(circle) + (speed * dt / 10));
-                //Console.WriteLine("Falling");
-                //Console.WriteLine("" + grid.MarginBottom);
-                //Console.WriteLine("" + Canvas.GetTop(circle));               
-                return true;
+                
+                return false;
             }
             else 
             {
-                //Wenn unten angekommen grid.floor++
+                //Korrektur
+                Canvas.SetTop(circle, Canvas.GetTop(grid.Rect) + grid.Rect.Height - (grid.ChipSize * grid.Floor[target]) - circle.Height);
+                
                 grid.Floor[target]++;
-                return false;
-            }
-            
-
+                
+                return true;
+            }         
             //    ////    // Bewegt den Chip vertikal
             //    ////    // target: Spalte, in der der Chip herunter fällt, wird für grid.Floor benötigt
             //    ////    // dt:     Zeitintervall seit dem letzten Aufruf
@@ -94,11 +95,6 @@ namespace NGClient
             {
                 canvas.Children.Add(circle);
             }
-        }
-
-        public void drawNewChip(Grid grid, Canvas canvas, int chipIndex, Chip[] chip) 
-        {
-
         }
 
         public void Resize(double sx, double sy)

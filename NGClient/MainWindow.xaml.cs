@@ -26,11 +26,13 @@ namespace NGClient
         StartDlg dlg;
         DispatcherTimer timer;
         Double ticks_old;
-        double speed = 5; //Chip dropspeed
+        double speed = 10; //Chip dropspeed
         int counter = 0;
         int chipIndex = 0;
         bool keyPressed;
         bool isRed;
+        int maxChips;
+        //int anz;
         public MainWindow()
         {
             dlg = new StartDlg();
@@ -60,11 +62,9 @@ namespace NGClient
             grid = new Grid(dlg.cols, dlg.rows);
             grid.Draw(c);
 
-            chip = new Chip[dlg.rows * dlg.cols];
-            //for (int i = 0; i < dlg.rows * dlg.cols; i++)
-            //{
-            //    
-            //}
+            maxChips = dlg.rows * dlg.cols;
+            chip = new Chip[maxChips + 1];
+            
             chip[chipIndex] = new Chip(grid, speed, System.Drawing.Color.Red);
 
             chip[chipIndex].Draw(c);           
@@ -76,11 +76,7 @@ namespace NGClient
 
             if (keyPressed == true)
             {
-                //chip[chipIndex].Drop(grid, counter, ticks - ticks_old, chipIndex);
-
-                //Canvas.GetTop(circle) + circle.Height >= Canvas.GetTop(grid.Rect) + grid.Rect.Height
-
-                if (chip[chipIndex].Drop(grid, counter, ticks - ticks_old, chipIndex) == false)
+                if (chip[chipIndex].Drop(grid, counter, ticks - ticks_old) == true)
                 {
                     keyPressed = false;
                     counter = 0;
@@ -89,51 +85,27 @@ namespace NGClient
                     if (isRed == true)
                     {
                         isRed = false;
-                        chip[chipIndex] = new Chip(grid, speed, System.Drawing.Color.Red);
-                        chip[chipIndex].Draw(c);
+                        if(chipIndex <= maxChips - 1)
+                        {
+                            chip[chipIndex] = new Chip(grid, speed, System.Drawing.Color.Red);
+                            chip[chipIndex].Draw(c);
+                            //chip[chipIndex].Owner = 1;
+                        }
                     }
                     else
                     {
                         isRed = true;
-                        chip[chipIndex] = new Chip(grid, speed, System.Drawing.Color.Blue);
-                        chip[chipIndex].Draw(c);
-                    }
-                    //chip[chipIndex] = new Chip(grid, speed, System.Drawing.Color.Red);
-
-                    
+                        if (chipIndex <= maxChips - 1)
+                        {
+                            chip[chipIndex] = new Chip(grid, speed, System.Drawing.Color.Blue);
+                            chip[chipIndex].Draw(c);
+                            //chip[chipIndex].Owner = -1;
+                        }
+                    }                
                 }
-
-                //Console.WriteLine("Pressed");
             }
-            //chip[chipIndex].drawNewChip(grid, c, chipIndex, chip);
-
             ticks_old = ticks;
-        }
-
-        private void c_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            try
-            {
-                Double sx = e.NewSize.Width / e.PreviousSize.Width;
-                Double sy = e.NewSize.Height / e.PreviousSize.Height;
-
-                  //grid.Resize(sx, sy);
-                  //chip[chipIndex].Resize(sx, sy);
-            }
-            catch { }
-        }
-        private void start_Click(object sender, RoutedEventArgs e)
-        {
-            Hide();
-            MainWindow mw = new MainWindow();
-            mw.Show();
-            Close();
-        }
-
-        private void ende_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        }            
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -162,8 +134,63 @@ namespace NGClient
 
             if(Keyboard.IsKeyDown(Key.Down))
             {
-                keyPressed = true;
+                if(grid.Floor[counter] != dlg.rows) 
+                {
+                    keyPressed = true;
+                }
+                else 
+                {
+                    keyPressed = false;
+                }
             }
+        }
+
+        private void checkWinner() 
+        {
+            //for (int y = 0; y < 4; y++)
+            //{
+            //    for (int x = 0; x < 4; x++)
+            //    {
+            //        for (int i = 0; i < dlg.cols; i++)
+            //        {
+            //            for (int j = 0; j < dlg.rows; j++)
+            //            {
+
+            //            }
+            //        }
+            //    }
+            //}                    
+        }
+
+        private void start_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            Close();
+        }
+
+        private void ende_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void c_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            try
+            {
+                Double sx = e.NewSize.Width / e.PreviousSize.Width;
+                Double sy = e.NewSize.Height / e.PreviousSize.Height;
+
+                //grid.Resize(sx, sy);
+
+                lbInfo.FontSize *= ((sx + sy) / 2);
+                lbInfo.Height *= sy;
+                lbInfo.Width *= sx;
+                Canvas.SetLeft(lbInfo, sx * Canvas.GetLeft(lbInfo));
+                Canvas.SetTop(lbInfo, sy * Canvas.GetTop(lbInfo));
+            }
+            catch { }
         }
     }
 }

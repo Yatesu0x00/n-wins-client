@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NGClient"
         mc:Ignorable="d"
-        Title="StartDlg" Height="150" Width="300" WindowStartupLocation="CenterScreen">
+        Title="StartDlg" Height="143.5" Width="536.5" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="tbS" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="50" Margin="46,34,0,0" GotFocus="TextBox_GotFocus"/>
-        <TextBox x:Name="tbR" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="50" Margin="133,34,0,0" GotFocus="TextBox_GotFocus_1"/>
-        <TextBox x:Name="tbN" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="50" Margin="222,34,0,0" GotFocus="TextBox_GotFocus_2"/>
-        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="46,73,0,0" Height="25" Click="btnOk_Click"/>
-        <Button x:Name="btnCancel" Content="Abbrechen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="197,73,0,0" Height="25" Click="btnCancel_Click"/>
-        <Label Content="Spalten" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="46,8,0,0"/>
-        <Label Content="Reihen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="133,8,0,0"/>
-        <Label Content="N" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,8,0,0"/>
+        <TextBox x:Name="tbS" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="50" Margin="28,34,0,0" GotFocus="TextBox_GotFocus"/>
+        <TextBox x:Name="tbR" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="50" Margin="176,34,0,0" GotFocus="TextBox_GotFocus_1"/>
+        <TextBox x:Name="tbN" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="50" Margin="319,34,0,0" GotFocus="TextBox_GotFocus_2"/>
+        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="96,73,0,0" Height="25" Click="btnOk_Click" IsDefault="True"/>
+        <Button x:Name="btnCancel" Content="Abbrechen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="293,73,0,0" Height="25" Click="btnCancel_Click"/>
+        <Label Content="Spalten (min. 3, max. 10)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,8,0,0"/>
+        <Label Content="Reihen (min. 3, max. 10)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,10,0,0"/>
+        <Label Content="N (min. 3, max. Anz. Spalten, Reihen)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="314,8,0,0" RenderTransformOrigin="0.629,0.577"/>
 
     </Grid>
 </Window>

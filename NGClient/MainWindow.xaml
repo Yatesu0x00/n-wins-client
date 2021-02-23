@@ -13,5 +13,6 @@
                 <MenuItem x:Name="ende" Header="Ende" Click="ende_Click"/>
             </MenuItem>
         </Menu>
+        <Label x:Name="lbInfo" Content="Right: Arrow=Right | Left: Arrow=Left | Drop: Arrow=Down" Canvas.Left="423" Canvas.Top="10" FontWeight="Bold"/>
     </Canvas>
 </Window>
